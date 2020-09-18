@@ -3,10 +3,8 @@ import AppRouter from "components/Router";
 import { authService } from "fbase";
 
 function App() {
-  // eslint-disable-next-line
   const [init, setInit] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  console.log(authService.currentUser);
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
