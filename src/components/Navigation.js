@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navigation = ({ userObj }) => {
-  const [userName, setUserName] = useState(userObj.displayName);
   const [userPhoto, setUserPhoto] = useState("");
   // realtime change
   useEffect(() => {
@@ -12,7 +11,6 @@ const Navigation = ({ userObj }) => {
       if (user[0]) {
         setUserPhoto(user[0].photoURL);
       }
-      setUserName(userObj.displayName);
     });
   }, []);
   return (
@@ -27,7 +25,7 @@ const Navigation = ({ userObj }) => {
               {userPhoto && (
                 <img src={userPhoto} alt="pic" width="50px" height="50px" />
               )}
-              <div>{userName}'s Profile</div>
+              <div>{userObj.displayName}'s Profile</div>
             </>
           </Link>
         </li>

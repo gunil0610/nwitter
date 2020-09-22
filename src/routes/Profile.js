@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-export default ({ userObj }) => {
+export default ({ refreshUser, userObj }) => {
   const history = useHistory();
   const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
   const [editing, setEditing] = useState(false); // state for editing profile
@@ -63,6 +63,7 @@ export default ({ userObj }) => {
     await clearUserData();
     await dbService.collection("users").add(userDataObj);
 
+    refreshUser();
     setEditing(false);
   };
 
