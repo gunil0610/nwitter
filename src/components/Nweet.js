@@ -4,15 +4,17 @@ import React, { useState } from "react";
 const Nweet = ({ nweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
   const [newNweet, setNewNweet] = useState(nweetObj.text);
+
+  // delete tweet
   const onDeleteClick = async () => {
     const ok = window.confirm("Are you sure you want to delete this nweet?");
-    console.log(ok);
     if (ok) {
       //delete
       await dbService.doc(`nweets/${nweetObj.id}`).delete();
       await storageService.refFromURL(nweetObj.attachmentUrl).delete();
     }
   };
+
   const toggleEditing = () => setEditing((prev) => !prev);
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -29,7 +31,7 @@ const Nweet = ({ nweetObj, isOwner }) => {
   };
 
   return (
-    <div key={nweetObj.id}>
+    <div>
       {editing ? (
         <>
           {isOwner && (

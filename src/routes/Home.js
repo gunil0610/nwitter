@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 const Home = ({ userObj }) => {
   const [nweet, setNweet] = useState("");
   const [nweets, setNweets] = useState([]);
-  const [attachment, setAttachment] = useState();
+  const [attachment, setAttachment] = useState("");
 
   // Real time tweets
   useEffect(() => {
@@ -18,9 +18,11 @@ const Home = ({ userObj }) => {
       setNweets(nweetArray);
     });
   }, []);
+
   // save data on database on form submit
   const onSubmit = async (event) => {
     event.preventDefault();
+    // making url for picture
     let attachmentUrl = "";
     if (attachment !== "") {
       const attachmentRef = storageService
@@ -29,16 +31,20 @@ const Home = ({ userObj }) => {
       const response = await attachmentRef.putString(attachment, "data_url");
       attachmentUrl = await response.ref.getDownloadURL();
     }
+    // nweet obj
     const nweetObj = {
       text: nweet,
       createdAt: Date.now(),
       creatorId: userObj.uid,
       attachmentUrl,
     };
+    // adding nweet obj on db
     await dbService.collection("nweets").add(nweetObj);
+    // clear the form
     setNweet("");
     setAttachment("");
   };
+
   // show what you write on text input
   const onChange = (event) => {
     const {
@@ -46,6 +52,7 @@ const Home = ({ userObj }) => {
     } = event;
     setNweet(value);
   };
+
   // uploading image functionality
   const onFileChange = (event) => {
     const {
@@ -61,6 +68,7 @@ const Home = ({ userObj }) => {
     };
     reader.readAsDataURL(theFile);
   };
+
   // clear the photo
   const onClearAttachment = () => {
     setAttachment();
