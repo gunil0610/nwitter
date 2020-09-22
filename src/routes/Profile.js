@@ -90,7 +90,12 @@ export default ({ refreshUser, userObj }) => {
       .where("userId", "==", userObj.uid)
       .orderBy("updatedDate", "desc")
       .get();
-    const userDataId = userData.docs.map((doc) => doc.id);
+    const userDataId = userData.docs.map((doc) => {
+      return {
+        id: doc.id,
+        attachmentUrl: doc.data().photoURL,
+      };
+    });
     if (userDataId.length > 0) {
       return userDataId.slice(0);
     } else {
@@ -103,7 +108,10 @@ export default ({ refreshUser, userObj }) => {
     const clearArr = await getUserData();
     if (clearArr) {
       clearArr.forEach(async (item) => {
-        await dbService.doc(`users/${item}`).delete();
+        await dbService.doc(`users/${item.id}`).delete();
+        if (item.attachmentUrl !== "") {
+          await storageService.refFromURL(item.attachmentUrl).delete();
+        }
       });
     }
   };
