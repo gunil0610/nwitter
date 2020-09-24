@@ -28,7 +28,7 @@ export default ({ refreshUser, userObj }) => {
   // update profile on submit
   const onSubmit = async (event) => {
     event.preventDefault();
-    let attachmentUrl = "";
+    let attachmentUrl = userObj.photoURL;
     let userDataObj = {};
 
     // making url for picture
@@ -51,7 +51,7 @@ export default ({ refreshUser, userObj }) => {
       });
     }
 
-    // make user data Obj
+    // make user data Obj for reference to delete photoURL
     userDataObj = {
       userId: userObj.uid,
       name: newDisplayName,
@@ -83,7 +83,7 @@ export default ({ refreshUser, userObj }) => {
     reader.readAsDataURL(theFile);
   };
 
-  // realtime change on profile
+  // get user obj to delete old photo and user obj
   const getUserData = async () => {
     const userData = await dbService
       .collection("users")
@@ -103,7 +103,7 @@ export default ({ refreshUser, userObj }) => {
     }
   };
 
-  // Clear Name
+  // delete obj and old photo
   const clearUserData = async () => {
     const clearArr = await getUserData();
     if (clearArr) {
