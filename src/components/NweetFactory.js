@@ -2,7 +2,15 @@ import { dbService, storageService } from "fbase";
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { FaPlus, FaTimes } from "react-icons/fa";
-import {} from "styles/NweetFactory.styles";
+import {
+  FactoryForm,
+  FactoryInputContainer,
+  FactoryInput,
+  FactoryArrow,
+  FactoryLabel,
+  FactoryAttachment,
+  FactoryClear,
+} from "styles/NweetFactory.styles";
 
 const NweetFactory = ({ userObj }) => {
   const [nweet, setNweet] = useState("");
@@ -11,6 +19,9 @@ const NweetFactory = ({ userObj }) => {
   // save data on database on form submit
   const onSubmit = async (event) => {
     event.preventDefault();
+    if (nweet === "") {
+      return;
+    }
     // making url for picture
     let attachmentUrl = "";
     if (attachment !== "") {
@@ -55,7 +66,9 @@ const NweetFactory = ({ userObj }) => {
       } = finishedEvent;
       setAttachment(result);
     };
-    reader.readAsDataURL(theFile);
+    if (theFile) {
+      reader.readAsDataURL(theFile);
+    }
   };
 
   // clear the photo
@@ -64,23 +77,40 @@ const NweetFactory = ({ userObj }) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <FactoryForm onSubmit={onSubmit}>
+      <FactoryInputContainer>
+        <FactoryInput
+          value={nweet}
+          onChange={onChange}
+          type="text"
+          placeholder="What's on your mind"
+          maxLength={120}
+        />
+        <FactoryArrow type="submit" value="&rarr;" />
+      </FactoryInputContainer>
+      <FactoryLabel for="attach-file">
+        <span>Add photos</span>
+        <FaPlus />
+      </FactoryLabel>
       <input
-        value={nweet}
-        onChange={onChange}
-        type="text"
-        placeholder="What's on your mind"
-        maxLength={120}
+        id="attach-file"
+        type="file"
+        accept="image/*"
+        onChange={onFileChange}
+        style={{ opacity: 0 }}
       />
-      <input type="file" accept="image/*" onChange={onFileChange} />
-      <input type="submit" value="&rarr;" />
+
       {attachment && (
-        <div>
+        <FactoryAttachment>
           <img src={attachment} alt="pic" width="50px" height="50px" />
-          <button onClick={onClearAttachment}>Clear</button>
-        </div>
+
+          <FactoryClear onClick={onClearAttachment}>
+            <span>Remove</span>
+            <FaTimes />
+          </FactoryClear>
+        </FactoryAttachment>
       )}
-    </form>
+    </FactoryForm>
   );
 };
 
