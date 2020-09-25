@@ -1,5 +1,14 @@
 import { dbService, storageService } from "fbase";
 import React, { useState } from "react";
+import { FaTrash, FaPencilAlt } from "react-icons/fa";
+import {
+  NweetStyle,
+  NweetForm,
+  NweetFormInput,
+  NweetSubmitButton,
+  NweetEditCancel,
+  NweetButtonContainer,
+} from "./Nweet.styles";
 
 const Nweet = ({ nweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
@@ -31,22 +40,23 @@ const Nweet = ({ nweetObj, isOwner }) => {
   };
 
   return (
-    <div>
+    <NweetStyle>
       {editing ? (
         <>
           {isOwner && (
             <>
-              <form onSubmit={onSubmit}>
-                <input
+              <NweetForm onSubmit={onSubmit}>
+                <NweetFormInput
                   type="text"
                   placeholder="Edit your nweet"
                   value={newNweet}
                   required
+                  autoFocus
                   onChange={onChange}
                 />
-                <input type="submit" value="Update Nweet" />
-              </form>
-              <button onClick={toggleEditing}>Cancel</button>
+                <NweetSubmitButton type="submit" value="Update Nweet" />
+              </NweetForm>
+              <NweetEditCancel onClick={toggleEditing}>Cancel</NweetEditCancel>
             </>
           )}
         </>
@@ -54,22 +64,21 @@ const Nweet = ({ nweetObj, isOwner }) => {
         <>
           <h4>{nweetObj.text}</h4>
           {nweetObj.attachmentUrl && (
-            <img
-              src={nweetObj.attachmentUrl}
-              alt="attachment"
-              width="50px"
-              height="50px"
-            />
+            <img src={nweetObj.attachmentUrl} alt="attachment" />
           )}
           {isOwner && (
-            <>
-              <button onClick={onDeleteClick}>Delete Nweet</button>
-              <button onClick={toggleEditing}>Edit Nweet</button>
-            </>
+            <NweetButtonContainer>
+              <span onClick={onDeleteClick}>
+                <FaTrash />
+              </span>
+              <span onClick={toggleEditing}>
+                <FaPencilAlt />
+              </span>
+            </NweetButtonContainer>
           )}
         </>
       )}
-    </div>
+    </NweetStyle>
   );
 };
 
