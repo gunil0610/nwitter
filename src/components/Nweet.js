@@ -66,7 +66,13 @@ const Nweet = ({ nweetObj, isOwner }) => {
           <NweetContainer>
             <h4>{nweetObj.text}</h4>
             {nweetObj.attachmentUrl && (
-              <img src={nweetObj.attachmentUrl} alt="attachment" />
+              <a
+                href={nweetObj.attachmentUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={nweetObj.attachmentUrl} alt="attachment" />
+              </a>
             )}
             {isOwner && (
               <NweetButtonContainer>

@@ -7,6 +7,6 @@ const container = css`
   flex-direction: column;
 `;
 
-export const HomeContainer = styled.form`
+export const HomeContainer = styled.div`
   ${container}
 `;

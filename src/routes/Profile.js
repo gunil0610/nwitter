@@ -2,6 +2,16 @@ import { authService, dbService, storageService } from "fbase";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import {
+  ProfileContainer,
+  ProfileForm,
+  ProfileFormInput,
+  ProfileFormBtn,
+  ProfileEditBtn,
+  ProfileLogOutBtn,
+} from "styles/Profile.style";
+import { FactoryLabel } from "styles/NweetFactory.styles";
+import { FaPlus } from "react-icons/fa";
 
 export default ({ refreshUser, userObj }) => {
   const history = useHistory();
@@ -118,23 +128,38 @@ export default ({ refreshUser, userObj }) => {
 
   return (
     <>
-      {editing ? (
-        <form onSubmit={onSubmit}>
-          <input
-            onChange={onChange}
-            type="text"
-            placeholder="Display Name"
-            value={newDisplayName}
-          />
-          <input type="file" accept="image/*" onChange={onFileChange} />
-          <input type="submit" placeholder="Update Profile" />
-        </form>
-      ) : (
-        <>
-          <button onClick={toggleEditing}>edit profile</button>
-          <button onClick={onLogOutClick}>Log Out</button>
-        </>
-      )}
+      <ProfileContainer>
+        {editing ? (
+          <ProfileForm onSubmit={onSubmit}>
+            <ProfileFormInput
+              onChange={onChange}
+              type="text"
+              autoFocus
+              placeholder="Display Name"
+              value={newDisplayName}
+            />
+            <FactoryLabel htmlFor="attach-file">
+              <span>Add photos</span>
+              <FaPlus />
+            </FactoryLabel>
+            <input
+              id="profile-pic"
+              type="file"
+              accept="image/*"
+              onChange={onFileChange}
+              style={{ opacity: 0 }}
+            />
+            <ProfileFormBtn type="submit" placeholder="Update Profile" />
+          </ProfileForm>
+        ) : (
+          <>
+            <ProfileEditBtn onClick={toggleEditing}>
+              edit profile
+            </ProfileEditBtn>
+            <ProfileLogOutBtn onClick={onLogOutClick}>Log Out</ProfileLogOutBtn>
+          </>
+        )}
+      </ProfileContainer>
     </>
   );
 };

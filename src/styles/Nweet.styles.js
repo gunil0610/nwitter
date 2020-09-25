@@ -44,10 +44,11 @@ export const NweetStyle = styled.div`
   }
 
   & img {
-    right: -10px;
-    top: 20px;
+    left: -25px;
+    top: -25px;
     position: absolute;
     border-radius: 50%;
+    border: 3px solid #fff;
     width: 50px;
     height: 50px;
     margin-top: 10px;

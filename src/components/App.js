@@ -48,7 +48,6 @@ function App() {
         "Initializing..."
       )}
       <GlobalStyle />
-      <footer>&copy; Nwitter {new Date().getFullYear()}</footer>
     </>
   );
 }
