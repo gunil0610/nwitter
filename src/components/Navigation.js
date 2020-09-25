@@ -1,32 +1,40 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { FaTwitter, FaUser } from "react-icons/fa";
+import { IconContext } from "react-icons/lib";
+import {
+  NavList,
+  NavNweetLink,
+  NavProfileLink,
+  NavProfileName,
+  NavProfilePic,
+} from "./Navigation.styles";
 
 const Navigation = ({ userObj }) => {
   return (
     <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/profile">
-            <>
-              {userObj.photoURL && (
-                <img
-                  src={userObj.photoURL}
-                  alt="pic"
-                  width="50px"
-                  height="50px"
-                />
-              )}
-              <div>
-                {userObj.displayName ? userObj.displayName : "NewUser"}'s
-                Profile
-              </div>
-            </>
-          </Link>
-        </li>
-      </ul>
+      <NavList>
+        <IconContext.Provider value={{ color: "#04AAFF", size: "2em" }}>
+          <li>
+            <NavNweetLink to="/">
+              <FaTwitter />
+            </NavNweetLink>
+          </li>
+          <li>
+            <NavProfileLink to="/profile">
+              <>
+                {userObj.photoURL ? (
+                  <NavProfilePic src={userObj.photoURL} alt="userProfile" />
+                ) : (
+                  <FaUser />
+                )}
+                <NavProfileName>
+                  {userObj.displayName ? userObj.displayName : "User"}'s Profile
+                </NavProfileName>
+              </>
+            </NavProfileLink>
+          </li>
+        </IconContext.Provider>
+      </NavList>
     </nav>
   );
 };
