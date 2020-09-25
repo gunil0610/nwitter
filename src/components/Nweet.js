@@ -8,6 +8,7 @@ import {
   NweetSubmitButton,
   NweetEditCancel,
   NweetButtonContainer,
+  NweetContainer,
 } from "styles/Nweet.styles";
 
 const Nweet = ({ nweetObj, isOwner }) => {
@@ -62,20 +63,22 @@ const Nweet = ({ nweetObj, isOwner }) => {
         </>
       ) : (
         <>
-          <h4>{nweetObj.text}</h4>
-          {nweetObj.attachmentUrl && (
-            <img src={nweetObj.attachmentUrl} alt="attachment" />
-          )}
-          {isOwner && (
-            <NweetButtonContainer>
-              <span onClick={onDeleteClick}>
-                <FaTrash />
-              </span>
-              <span onClick={toggleEditing}>
-                <FaPencilAlt />
-              </span>
-            </NweetButtonContainer>
-          )}
+          <NweetContainer>
+            <h4>{nweetObj.text}</h4>
+            {nweetObj.attachmentUrl && (
+              <img src={nweetObj.attachmentUrl} alt="attachment" />
+            )}
+            {isOwner && (
+              <NweetButtonContainer>
+                <span onClick={onDeleteClick}>
+                  <FaTrash />
+                </span>
+                <span onClick={toggleEditing}>
+                  <FaPencilAlt />
+                </span>
+              </NweetButtonContainer>
+            )}
+          </NweetContainer>
         </>
       )}
     </NweetStyle>

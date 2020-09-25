@@ -1,6 +1,5 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-//factoryFrom
 export const FactoryForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -8,7 +7,6 @@ export const FactoryForm = styled.form`
   width: 100%;
 `;
 
-// factoryInput__container
 export const FactoryInputContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -19,7 +17,6 @@ export const FactoryInputContainer = styled.div`
   width: 100%;
 `;
 
-// factoryInput__input
 export const FactoryInput = styled.input`
   flex-grow: 1;
   height: 40px;
@@ -31,7 +28,6 @@ export const FactoryInput = styled.input`
   font-size: 12px;
 `;
 
-// factoryInput__arrow
 export const FactoryArrow = styled.input`
   position: absolute;
   right: 0;
@@ -44,7 +40,6 @@ export const FactoryArrow = styled.input`
   color: white;
 `;
 
-// factoryInput__label
 export const FactoryLabel = styled.label`
   color: #04aaff;
   cursor: pointer;
@@ -53,7 +48,7 @@ export const FactoryLabel = styled.label`
     font-size: 12px;
   }
 `;
-// factoryFrom__attachment
+
 export const FactoryAttachment = styled.div`
   display: flex;
   flex-direction: column;
@@ -65,7 +60,7 @@ export const FactoryAttachment = styled.div`
     border-radius: 40px;
   }
 `;
-// factoryFrom__clear
+
 export const FactoryClear = styled.div`
   color: #04aaff;
   cursor: pointer;

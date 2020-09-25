@@ -1,6 +1,8 @@
 import AuthForm from "components/AuthForm";
 import { authService, firebaseInstance } from "fbase";
 import React from "react";
+import { FaTwitter, FaGoogle, FaGithub } from "react-icons/fa";
+import { AuthContainer, AuthBtns, AuthBtn } from "styles/Auth.styles";
 
 const Auth = () => {
   // OAuth
@@ -19,17 +21,18 @@ const Auth = () => {
   };
 
   return (
-    <div>
+    <AuthContainer>
+      <FaTwitter color="#04AAFF" size="3em" style={{ marginBottom: 30 }} />
       <AuthForm />
-      <div>
-        <button onClick={onSocialClick} name="google">
-          Continue with Google
-        </button>
-        <button onClick={onSocialClick} name="github">
-          Continue with Github
-        </button>
-      </div>
-    </div>
+      <AuthBtns>
+        <AuthBtn onClick={onSocialClick} name="google">
+          Continue with Google <FaGoogle />
+        </AuthBtn>
+        <AuthBtn onClick={onSocialClick} name="github">
+          Continue with Github <FaGithub />
+        </AuthBtn>
+      </AuthBtns>
+    </AuthContainer>
   );
 };
 export default Auth;

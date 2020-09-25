@@ -88,7 +88,7 @@ const NweetFactory = ({ userObj }) => {
         />
         <FactoryArrow type="submit" value="&rarr;" />
       </FactoryInputContainer>
-      <FactoryLabel for="attach-file">
+      <FactoryLabel htmlFor="attach-file">
         <span>Add photos</span>
         <FaPlus />
       </FactoryLabel>

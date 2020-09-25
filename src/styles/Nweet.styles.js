@@ -89,3 +89,7 @@ export const NweetButtonContainer = styled.div`
     margin-right: 10px;
   }
 `;
+
+export const NweetContainer = styled.div`
+  word-wrap: break-word;
+`;

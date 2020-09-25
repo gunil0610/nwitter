@@ -2,6 +2,7 @@ import Nweet from "components/Nweet";
 import NweetFactory from "components/NweetFactory";
 import { dbService } from "fbase";
 import React, { useEffect, useState } from "react";
+import { HomeContainer } from "styles/Home.styles";
 
 const Home = ({ userObj }) => {
   const [nweets, setNweets] = useState([]);
@@ -18,9 +19,9 @@ const Home = ({ userObj }) => {
   }, []);
 
   return (
-    <div>
+    <HomeContainer>
       <NweetFactory userObj={userObj} />
-      <div>
+      <div style={{ marginTop: 30 }}>
         {nweets.map((nweet) => (
           <Nweet
             key={nweet.id}
@@ -29,7 +30,7 @@ const Home = ({ userObj }) => {
           />
         ))}
       </div>
-    </div>
+    </HomeContainer>
   );
 };
 export default Home;
