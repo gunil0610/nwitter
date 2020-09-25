@@ -6,7 +6,7 @@ import {
   AuthFormSubmit,
   AuthFormError,
   AuthFormSwitch,
-} from "./AuthForm.styles";
+} from "styles/AuthForm.styles";
 
 const AuthForm = () => {
   const [email, setEmail] = useState("");

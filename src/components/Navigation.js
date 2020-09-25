@@ -7,7 +7,7 @@ import {
   NavProfileLink,
   NavProfileName,
   NavProfilePic,
-} from "./Navigation.styles";
+} from "styles/Navigation.styles";
 
 const Navigation = ({ userObj }) => {
   return (

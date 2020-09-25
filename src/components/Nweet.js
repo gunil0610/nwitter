@@ -8,7 +8,7 @@ import {
   NweetSubmitButton,
   NweetEditCancel,
   NweetButtonContainer,
-} from "./Nweet.styles";
+} from "styles/Nweet.styles";
 
 const Nweet = ({ nweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);

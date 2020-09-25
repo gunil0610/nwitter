@@ -1,6 +1,8 @@
 import { dbService, storageService } from "fbase";
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { FaPlus, FaTimes } from "react-icons/fa";
+import {} from "styles/NweetFactory.styles";
 
 const NweetFactory = ({ userObj }) => {
   const [nweet, setNweet] = useState("");
@@ -58,7 +60,7 @@ const NweetFactory = ({ userObj }) => {
 
   // clear the photo
   const onClearAttachment = () => {
-    setAttachment();
+    setAttachment("");
   };
 
   return (
@@ -71,7 +73,7 @@ const NweetFactory = ({ userObj }) => {
         maxLength={120}
       />
       <input type="file" accept="image/*" onChange={onFileChange} />
-      <input type="submit" value="Nweet" />
+      <input type="submit" value="&rarr;" />
       {attachment && (
         <div>
           <img src={attachment} alt="pic" width="50px" height="50px" />
